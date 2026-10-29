@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mouli Arora — First-Year CS & AI Student from Roorkee at NST X RU. Curious Mind. Creative Soul. Future AI Innovator.">
+  <meta name="keywords" content="Mouli Arora, Computer Science, Artificial Intelligence, Portfolio, Python, Roorkee, NST X RU">
+  <meta name="author" content="Mouli Arora">
+  <title>Mouli Arora | CS &amp; AI Student from Roorkee • Future AI Innovator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================================================================
+       RESET & DESIGN TOKENS — NEW EMERALD / AMBER / MAGENTA PALETTE
+       ===================================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* ── NEW Color System ── */
+      --bg-deep:       #06080D;
+      --bg-card:       rgba(12, 18, 28, 0.82);
+      --bg-card-hover: rgba(18, 28, 42, 0.92);
+      --bg-surface:    #0C1018;
+
+      --emerald:       #34D399;
+      --emerald-light: #6EE7B7;
+      --emerald-glow:  rgba(52, 211, 153, 0.3);
+
+      --amber:         #FBBF24;
+      --amber-light:   #FDE68A;
+      --amber-glow:    rgba(251, 191, 36, 0.3);
+
+      --magenta:       #E879F9;
+      --magenta-light: #F0ABFC;
+      --magenta-glow:  rgba(232, 121, 249, 0.25);
+
+      --text-bright:   #F0FDF4;
+      --text-muted:    #94A3B8;
+      --text-dim:      #64748B;
+
+      --border-glass:       rgba(255, 255, 255, 0.07);
+      --border-glass-hover: rgba(52, 211, 153, 0.5);
+
+      /* Gradients */
+      --grad-accent: linear-gradient(135deg, var(--emerald) 0%, var(--amber) 50%, var(--magenta) 100%);
+      --grad-text:   linear-gradient(135deg, #F0FDF4 15%, var(--emerald) 55%, var(--amber) 100%);
+
+      /* Typography */
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body:    'Inter', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --tr: all 0.35s var(--ease-out);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg-deep);
+      color: var(--text-bright);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background: var(--bg-deep);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── Honeycomb Dot-Grid Background ── */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(52, 211, 153, 0.07) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    ::selection { background: rgba(52, 211, 153, 0.4); color: #fff; }
+
+    /* =====================================================================
+       TYPOGRAPHY & LAYOUT UTILITIES
+       ===================================================================== */
+    h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; line-height: 1.18; letter-spacing: -0.025em; }
+    p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.72; }
+    a { color: inherit; text-decoration: none; transition: var(--tr); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
+    .section   { padding: 7rem 0; position: relative; }
+
+    .section-header { text-align: center; max-width: 740px; margin: 0 auto 4rem; }
+
+    .section-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .35rem 1rem; border-radius: 9999px;
+      font-family: var(--font-mono); font-size: .78rem; font-weight: 500;
+      color: var(--emerald); background: rgba(52, 211, 153, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      margin-bottom: 1.15rem; text-transform: uppercase; letter-spacing: .09em;
+    }
+
+    .section-title { font-size: clamp(2.1rem, 3.6vw, 2.9rem); margin-bottom: 1rem; }
+    .section-desc  { font-size: 1.1rem; }
+
+    .accent-text {
+      background: var(--grad-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ── Glass Card ── */
+    .glass {
+      background: var(--bg-card);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border-glass);
+      border-radius: 18px;
+      transition: var(--tr);
+      position: relative; overflow: hidden;
+    }
+    .glass::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+    }
+    .glass:hover {
+      border-color: var(--border-glass-hover);
+      transform: translateY(-5px) scale(1.008);
+      box-shadow: 0 24px 48px -12px rgba(0,0,0,.55), 0 0 30px -6px var(--emerald-glow);
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .65rem;
+      padding: .9rem 1.9rem; border-radius: 12px;
+      font-family: var(--font-heading); font-size: .95rem; font-weight: 600;
+      cursor: pointer; border: none; outline: none; transition: var(--tr);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #059669, var(--emerald));
+      color: #022c22; box-shadow: 0 4px 24px var(--emerald-glow);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--emerald), #059669);
+      transform: translateY(-2px); box-shadow: 0 10px 36px var(--emerald-glow); color: #022c22;
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,.04); color: var(--text-bright);
+      border: 1px solid var(--border-glass);
+    }
+    .btn-secondary:hover {
+      background: rgba(251, 191, 36, .1); border-color: var(--amber);
+      color: var(--amber); transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(251,191,36,.2);
+    }
+
+    /* =====================================================================
+       NAVIGATION
+       ===================================================================== */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(6, 8, 13, .88); backdrop-filter: blur(22px);
+      border-bottom: 1px solid var(--border-glass); transition: var(--tr);
+    }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+
+    .logo-link {
+      display: flex; align-items: center; gap: .8rem;
+      font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem;
+      z-index: 1002;
+    }
+    .logo-badge {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, rgba(52,211,153,.25), rgba(251,191,36,.25));
+      border: 1px solid rgba(52,211,153,.5);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-weight: 700; font-size: .95rem;
+      color: var(--emerald); box-shadow: 0 0 18px rgba(52,211,153,.3);
+      transition: var(--tr);
+    }
+    .logo-link:hover .logo-badge { transform: rotate(8deg) scale(1.08); border-color: var(--amber); color: var(--amber); }
+    .logo-text { color: var(--text-bright); }
+    .logo-sub  { font-size: .72rem; font-family: var(--font-mono); color: var(--text-dim); display: block; margin-top: -3px; }
+
+    /* Pure CSS Hamburger */
+    .nav-toggle   { display: none; }
+    .nav-ham      { display: none; cursor: pointer; width: 42px; height: 42px; border-radius: 10px; background: rgba(255,255,255,.05); border: 1px solid var(--border-glass); flex-direction: column; justify-content: center; align-items: center; gap: 5px; z-index: 1002; transition: var(--tr); }
+    .nav-ham:hover{ border-color: var(--emerald); background: rgba(52,211,153,.12); }
+    .ham-line     { width: 22px; height: 2px; background: var(--text-bright); border-radius: 2px; transition: transform .3s ease, opacity .3s ease; }
+
+    .nav-list { display: flex; align-items: center; gap: 1.85rem; list-style: none; }
+
+    .nav-link {
+      font-size: .92rem; font-weight: 500; color: var(--text-muted);
+      position: relative; padding: .4rem 0;
+    }
+    .nav-link::after {
+      content: ""; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--emerald), var(--amber));
+      transition: width .3s ease;
+    }
+    .nav-link:hover { color: var(--text-bright); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-cta { padding: .6rem 1.35rem; font-size: .88rem; border-radius: 9999px; }
+
+    .mobile-drawer-hdr { display: none; }
+    .nav-backdrop { display: none; }
+
+    /* =====================================================================
+       HERO — AURORA GRADIENT BACKGROUND
+       ===================================================================== */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding-top: 110px; padding-bottom: 60px;
+      position: relative; overflow: hidden;
+    }
+
+    /* Aurora Mesh Gradient — replaces old orbs */
+    .aurora {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      overflow: hidden;
+    }
+    .aurora-layer {
+      position: absolute; border-radius: 50%; filter: blur(100px); opacity: .4;
+      animation: auroraDrift 16s ease-in-out infinite alternate;
+    }
+    .aurora-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--emerald), transparent 70%);
+      top: -10%; right: -5%;
+    }
+    .aurora-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--amber), transparent 70%);
+      bottom: -5%; left: -8%;
+      animation-delay: -6s; animation-duration: 20s;
+    }
+    .aurora-3 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, var(--magenta), transparent 70%);
+      top: 35%; left: 40%; opacity: .22;
+      animation-delay: -10s; animation-duration: 22s;
+    }
+    /* Sweeping light beam */
+    .aurora-beam {
+      position: absolute; top: 0; left: -30%; width: 25%; height: 150%;
+      background: linear-gradient(90deg, transparent, rgba(52,211,153,.06), transparent);
+      transform: rotate(15deg);
+      animation: beamSweep 8s linear infinite;
+    }
+
+    @keyframes auroraDrift {
+      0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+      33%  { transform: translate(40px, -30px) scale(1.12) rotate(3deg); }
+      66%  { transform: translate(-30px, 25px) scale(.92) rotate(-2deg); }
+      100% { transform: translate(15px, -15px) scale(1.05) rotate(1deg); }
+    }
+    @keyframes beamSweep {
+      0%   { left: -30%; opacity: 0; }
+      20%  { opacity: 1; }
+      80%  { opacity: 1; }
+      100% { left: 130%; opacity: 0; }
+    }
+
+    .hero-grid {
+      display: grid; grid-template-columns: 1.15fr .85fr;
+      gap: 3.5rem; align-items: center; position: relative; z-index: 1;
+    }
+
+    /* Status badge */
+    .status-badge {
+      display: inline-flex; align-items: center; gap: .75rem;
+      padding: .5rem 1.15rem; border-radius: 9999px;
+      background: rgba(52,211,153,.08); border: 1px solid rgba(52,211,153,.35);
+      font-size: .82rem; font-family: var(--font-mono); color: var(--text-bright);
+      margin-bottom: 1.6rem; box-shadow: 0 0 22px rgba(52,211,153,.15);
+      animation: slideDown .8s var(--ease-out) backwards;
+    }
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--emerald); box-shadow: 0 0 10px var(--emerald);
+      position: relative;
+    }
+    .status-dot::after {
+      content: ""; position: absolute; inset: -4px; border-radius: 50%;
+      border: 1px solid var(--emerald);
+      animation: ping 2s cubic-bezier(0,0,.2,1) infinite;
+    }
+    @keyframes ping { 0%{ transform:scale(.8); opacity:.9; } 100%{ transform:scale(2.4); opacity:0; } }
+
+    /* Headline */
+    .hero-h1 {
+      font-size: clamp(2.4rem, 4.5vw, 3.85rem);
+      line-height: 1.14; margin-bottom: 1.35rem;
+      animation: slideUp .9s var(--ease-out) .1s backwards;
+    }
+
+    /* Typing carousel */
+    .typing-row {
+      display: flex; align-items: center; gap: .5rem;
+      font-family: var(--font-mono); font-size: 1.15rem; color: var(--text-muted);
+      margin-bottom: 1.5rem; animation: slideUp .9s var(--ease-out) .2s backwards;
+    }
+    .carousel { height: 1.6em; line-height: 1.6em; overflow: hidden; display: inline-block; vertical-align: middle; }
+    .carousel-track {
+      display: flex; flex-direction: column;
+      animation: wordSlide 10s var(--ease-out) infinite;
+    }
+    .carousel-word { height: 1.6em; line-height: 1.6em; color: var(--emerald); font-weight: 600; text-shadow: 0 0 18px var(--emerald-glow); }
+    .cursor-blink  { color: var(--amber); animation: blink .85s infinite; font-weight: 700; }
+
+    @keyframes wordSlide {
+      0%,22%  { transform: translateY(0); }
+      25%,47% { transform: translateY(-25%); }
+      50%,72% { transform: translateY(-50%); }
+      75%,97% { transform: translateY(-75%); }
+      100%    { transform: translateY(-100%); }
+    }
+    @keyframes blink { 0%,100%{ opacity:1; } 50%{ opacity:0; } }
+
+    .hero-intro {
+      font-size: 1.12rem; line-height: 1.78; margin-bottom: 2.25rem; max-width: 630px;
+      animation: slideUp .9s var(--ease-out) .3s backwards;
+    }
+    .hero-intro strong { color: var(--text-bright); font-weight: 600; }
+
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; animation: slideUp .9s var(--ease-out) .4s backwards; }
+
+    /* Scroll indicator */
+    .scroll-cue {
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      color: var(--text-dim); font-size: .74rem; font-family: var(--font-mono);
+      text-transform: uppercase; letter-spacing: .1em;
+      animation: slideUp 1s var(--ease-out) .6s backwards;
+    }
+    .scroll-mouse { width: 22px; height: 34px; border: 2px solid rgba(255,255,255,.18); border-radius: 12px; display: flex; justify-content: center; padding-top: 6px; }
+    .scroll-dot   { width: 3px; height: 7px; background: var(--emerald); border-radius: 2px; animation: scrollDot 2s var(--ease-out) infinite; }
+    @keyframes scrollDot { 0%{ transform:translateY(0); opacity:1; } 100%{ transform:translateY(12px); opacity:0; } }
+
+    /* Code Card */
+    .code-frame {
+      background: rgba(12,18,28,.9); border: 1px solid var(--border-glass);
+      border-radius: 18px; position: relative;
+      box-shadow: 0 28px 56px -14px rgba(0,0,0,.65), 0 0 50px -12px var(--emerald-glow);
+      animation: slideLeft 1s var(--ease-out) .2s backwards;
+    }
+    .code-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 1.3rem; background: rgba(0,0,0,.4);
+      border-bottom: 1px solid var(--border-glass); border-radius: 18px 18px 0 0;
+    }
+    .dots { display: flex; gap: 7px; }
+    .dot  { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-r{ background:#EF4444; } .dot-y{ background:#F59E0B; } .dot-g{ background:#10B981; }
+    .code-title { font-family: var(--font-mono); font-size: .8rem; color: var(--text-muted); display: flex; align-items: center; gap: .4rem; }
+    .code-body  { padding: 1.4rem; font-family: var(--font-mono); font-size: .85rem; line-height: 1.7; overflow-x: auto; }
+    .c-cmt { color:#64748B; font-style:italic; } .c-kw { color:var(--amber); font-weight:600; }
+    .c-fn  { color:var(--emerald); } .c-str { color:var(--magenta); } .c-pr { color:#CBD5E1; }
+    .code-footer {
+      padding: .8rem 1.3rem; background: rgba(0,0,0,.45);
+      border-top: 1px solid var(--border-glass); border-radius: 0 0 18px 18px;
+      font-family: var(--font-mono); font-size: .78rem; color: var(--emerald);
+      display: flex; align-items: center; gap: .5rem;
+    }
+
+    /* Floating chips */
+    .chip {
+      position: absolute; padding: .5rem 1rem; background: rgba(6,8,13,.94);
+      border-radius: 12px; font-size: .8rem; font-family: var(--font-mono);
+      display: flex; align-items: center; gap: .5rem; z-index: 2;
+      box-shadow: 0 12px 28px rgba(0,0,0,.55);
+    }
+    .chip-t { top:-16px; right:20px; border: 1px solid rgba(52,211,153,.5); color:var(--emerald); animation: chipFloat 6s ease-in-out infinite alternate; }
+    .chip-b { bottom:-16px; left:20px; border: 1px solid rgba(251,191,36,.5); color:var(--amber); animation: chipFloat 7s ease-in-out -3s infinite alternate; }
+    @keyframes chipFloat { 0%{ transform:translateY(0); } 100%{ transform:translateY(-9px); } }
+
+    /* =====================================================================
+       ABOUT ME — WITH ROORKEE HOMETOWN
+       ===================================================================== */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; margin-bottom: 4.5rem; }
+
+    .story-card { padding: 2.75rem; }
+    .story-lead { font-size: 1.25rem; line-height: 1.65; color: var(--text-bright); margin-bottom: 1.5rem; font-weight: 500; }
+    .story-lead span { color: var(--emerald); font-weight: 600; }
+    .story-body { margin-bottom: 1.5rem; }
+    .story-meta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-glass); }
+    .meta-tag   { padding: .35rem .85rem; border-radius: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--border-glass); font-size: .82rem; font-family: var(--font-mono); color: var(--text-muted); }
+
+    /* Pillars */
+    .pillars { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+    .pillar  { padding: 1.85rem; display: flex; flex-direction: column; gap: .75rem; }
+    .pillar-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    }
+    .pi-1 { background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.35); color: var(--emerald); }
+    .pi-2 { background: rgba(251,191,36,.12); border: 1px solid rgba(251,191,36,.35); color: var(--amber); }
+    .pi-3 { background: rgba(232,121,249,.12); border: 1px solid rgba(232,121,249,.35); color: var(--magenta); }
+    .pi-4 { background: rgba(56,189,248,.12); border: 1px solid rgba(56,189,248,.35); color: #38BDF8; }
+    .pillar h3 { font-size: 1.2rem; }
+    .pillar p  { font-size: .95rem; line-height: 1.6; }
+
+    /* ── Hometown Roorkee Section ── */
+    .hometown-section {
+      margin-top: 4.5rem; padding: 3.25rem;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(251,191,36,.05) 0%, rgba(12,18,28,.7) 100%);
+      border: 1px solid var(--border-glass);
+    }
+    .hometown-header { text-align: center; margin-bottom: 2.5rem; }
+    .hometown-title  { font-size: 1.85rem; margin-bottom: .5rem; }
+    .hometown-sub    { font-size: 1.05rem; color: var(--text-muted); max-width: 680px; margin: 0 auto; }
+
+    .hometown-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2.5rem; align-items: start; }
+
+    .hometown-story-card { padding: 2.25rem; }
+    .hometown-story-card h4 { font-size: 1.3rem; margin-bottom: .85rem; color: var(--text-bright); }
+    .hometown-story-card p  { margin-bottom: 1rem; }
+    .hometown-highlights { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-glass); }
+    .hometown-highlights li { display: flex; align-items: center; gap: .7rem; font-size: .94rem; color: #CBD5E1; }
+    .hl-bullet { color: var(--amber); font-size: .95rem; }
+
+    .hometown-facts { display: flex; flex-direction: column; gap: 1.25rem; }
+    .fact-card {
+      padding: 1.5rem; background: rgba(6,8,13,.7);
+      border: 1px solid var(--border-glass); border-radius: 14px;
+      transition: var(--tr);
+    }
+    .fact-card:hover { border-color: var(--amber); transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.4); }
+    .fact-emoji  { font-size: 1.6rem; margin-bottom: .65rem; display: block; }
+    .fact-label  { font-size: .74rem; font-family: var(--font-mono); color: var(--amber); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .35rem; }
+    .fact-title  { font-size: 1.1rem; margin-bottom: .4rem; color: var(--text-bright); }
+    .fact-desc   { font-size: .9rem; line-height: 1.55; }
+
+    /* ── Beyond the Screen (Hobbies) ── */
+    .beyond {
+      margin-top: 4.5rem; padding: 3.25rem; border-radius: 20px;
+      background: linear-gradient(180deg, rgba(232,121,249,.05) 0%, rgba(12,18,28,.7) 100%);
+      border: 1px solid var(--border-glass);
+    }
+    .beyond-header { text-align: center; margin-bottom: 2.5rem; }
+    .beyond-title  { font-size: 1.85rem; margin-bottom: .5rem; }
+    .beyond-sub    { font-size: 1.05rem; color: var(--text-muted); max-width: 680px; margin: 0 auto; }
+
+    .hobbies { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.75rem; }
+    .hobby-card {
+      padding: 2.25rem 1.85rem; background: rgba(6,8,13,.75);
+      border: 1px solid var(--border-glass); border-radius: 16px; transition: var(--tr);
+    }
+    .hobby-card:hover { border-color: var(--magenta); transform: translateY(-5px); box-shadow: 0 16px 36px rgba(0,0,0,.45), 0 0 22px var(--magenta-glow); }
+    .hobby-emoji { font-size: 2.3rem; margin-bottom: 1.15rem; display: inline-block; }
+    .hobby-tag   { font-size: .78rem; font-family: var(--font-mono); color: var(--magenta); margin-bottom: .85rem; text-transform: uppercase; letter-spacing: .05em; }
+    .hobby-name  { font-size: 1.25rem; margin-bottom: .5rem; color: var(--text-bright); }
+    .hobby-desc  { font-size: .94rem; line-height: 1.6; }
+
+    /* =====================================================================
+       SKILLS — REALISTIC FIRST-YEAR LEVEL
+       ===================================================================== */
+    .skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; margin-bottom: 3.5rem; }
+    .skill-card  { padding: 2.35rem; display: flex; flex-direction: column; height: 100%; }
+    .skill-top   { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.35rem; gap: 1rem; }
+    .skill-cat   { font-size: 1.35rem; color: var(--text-bright); margin-bottom: .35rem; }
+    .skill-sub   { font-size: .88rem; color: var(--text-muted); font-family: var(--font-mono); }
+
+    /* Status tags */
+    .stag { font-size: .73rem; font-family: var(--font-mono); font-weight: 600; padding: .35rem .8rem; border-radius: 9999px; white-space: nowrap; letter-spacing: .04em; }
+    .stag-learn  { background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.35); color: var(--emerald); }
+    .stag-explore{ background: rgba(232,121,249,.1); border: 1px solid rgba(232,121,249,.35); color: var(--magenta); }
+    .stag-begin  { background: rgba(251,191,36,.1); border: 1px solid rgba(251,191,36,.35); color: var(--amber); }
+
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: .9rem; margin-bottom: 1.85rem; flex-grow: 1; }
+    .skill-item { display: flex; align-items: flex-start; gap: .8rem; font-size: .95rem; color: #CBD5E1; line-height: 1.55; }
+    .sk-dot     { width: 6px; height: 6px; border-radius: 50%; margin-top: 8px; flex-shrink: 0; }
+    .sk-d1 { background: var(--emerald); }
+    .sk-d2 { background: var(--amber); }
+    .sk-d3 { background: var(--magenta); }
+    .sk-d4 { background: #38BDF8; }
+
+    .skill-footer { padding-top: 1.25rem; border-top: 1px solid var(--border-glass); font-size: .85rem; color: var(--text-muted); font-style: italic; }
+
+    /* Pledge banner */
+    .pledge {
+      padding: 1.85rem 2.25rem; border-radius: 16px;
+      background: rgba(12,18,28,.7); border: 1px dashed rgba(52,211,153,.4);
+      display: flex; align-items: center; gap: 1.75rem;
+    }
+    .pledge-icon { font-size: 2.2rem; flex-shrink: 0; }
+    .pledge h4   { font-size: 1.05rem; font-weight: 600; margin-bottom: .25rem; }
+    .pledge p    { font-size: .94rem; line-height: 1.6; }
+
+    /* =====================================================================
+       PROJECTS
+       ===================================================================== */
+    .proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-bottom: 3.5rem; }
+    .proj-card { padding: 2.35rem 2rem; display: flex; flex-direction: column; justify-content: space-between; height: 100%; background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 18px; position: relative; }
+    .proj-card:hover { border-color: rgba(251,191,36,.5); transform: translateY(-6px); box-shadow: 0 22px 44px -15px rgba(0,0,0,.6), 0 0 28px rgba(251,191,36,.2); }
+
+    .proj-badges { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.35rem; }
+    .proj-type   { font-size: .74rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); }
+    .proj-status { font-size: .72rem; font-family: var(--font-mono); padding: .25rem .65rem; border-radius: 9999px; background: rgba(251,191,36,.12); border: 1px solid rgba(251,191,36,.3); color: var(--amber); font-weight: 500; }
+    .proj-title  { font-size: 1.35rem; margin-bottom: .85rem; }
+    .proj-desc   { font-size: .95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1; }
+    .proj-tags   { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.75rem; }
+    .tech-pill   { font-size: .75rem; font-family: var(--font-mono); padding: .25rem .65rem; border-radius: 6px; background: rgba(255,255,255,.04); border: 1px solid var(--border-glass); color: var(--emerald); }
+    .proj-actions{ display: flex; gap: .75rem; padding-top: 1.25rem; border-top: 1px solid var(--border-glass); }
+    .proj-btn    { flex:1; padding: .65rem .85rem; font-size: .82rem; border-radius: 8px; text-align: center; font-family: var(--font-mono); font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: .45rem; border: 1px solid var(--border-glass); background: rgba(255,255,255,.03); color: var(--text-muted); }
+    .proj-btn:hover { border-color: var(--emerald); color: var(--emerald); background: rgba(52,211,153,.08); }
+    .proj-btn-off   { opacity:.6; cursor:not-allowed; pointer-events:none; }
+
+    .proj-note { text-align:center; padding:1.6rem; border-radius:14px; background:rgba(255,255,255,.02); border:1px solid var(--border-glass); font-size:.92rem; color:var(--text-dim); }
+
+    /* =====================================================================
+       LEARNING JOURNEY TIMELINE
+       ===================================================================== */
+    .timeline { position: relative; max-width: 900px; margin: 0 auto; padding: 2rem 0; }
+    .timeline::before {
+      content: ""; position: absolute; top: 0; bottom: 0; left: 32px; width: 2px;
+      background: linear-gradient(180deg, var(--emerald) 0%, var(--amber) 50%, rgba(232,121,249,.25) 100%);
+      box-shadow: 0 0 14px var(--emerald-glow);
+    }
+    .tl-item     { position: relative; padding-left: 82px; margin-bottom: 3.25rem; }
+    .tl-item:last-child { margin-bottom: 0; }
+
+    .tl-node {
+      position: absolute; left: 20px; top: 0; width: 26px; height: 26px;
+      border-radius: 50%; background: var(--bg-deep);
+      display: flex; align-items: center; justify-content: center; z-index: 2;
+    }
+    .tl-node-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .tl-now .tl-node  { border: 2px solid var(--emerald); box-shadow: 0 0 16px var(--emerald-glow); }
+    .tl-now .tl-node-dot { background: var(--emerald); }
+    .tl-next .tl-node { border: 2px solid var(--amber); box-shadow: 0 0 16px var(--amber-glow); }
+    .tl-next .tl-node-dot { background: var(--amber); }
+    .tl-dream .tl-node { border: 2px solid var(--magenta); box-shadow: 0 0 16px var(--magenta-glow); }
+    .tl-dream .tl-node-dot { background: var(--magenta); }
+
+    .tl-card { padding: 2.25rem; border-radius: 18px; background: var(--bg-card); border: 1px solid var(--border-glass); transition: var(--tr); }
+    .tl-card:hover { border-color: var(--border-glass-hover); transform: translateX(6px); box-shadow: 0 18px 36px rgba(0,0,0,.5); }
+    .tl-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .6rem; margin-bottom: .75rem; }
+    .tl-title{ font-size: 1.3rem; }
+    .tl-badge{ font-size: .75rem; font-family: var(--font-mono); padding: .3rem .75rem; border-radius: 9999px; font-weight: 600; }
+    .tb-now  { background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.4); color: var(--emerald); }
+    .tb-next { background: rgba(251,191,36,.12); border: 1px solid rgba(251,191,36,.4); color: var(--amber); }
+    .tb-dream{ background: rgba(232,121,249,.12); border: 1px solid rgba(232,121,249,.4); color: var(--magenta); }
+    .tl-meta { font-size: .86rem; font-family: var(--font-mono); color: var(--text-dim); margin-bottom: .85rem; }
+    .tl-desc { font-size: .96rem; line-height: 1.65; margin-bottom: 1.25rem; }
+    .tl-checks { list-style:none; display:flex; flex-direction:column; gap:.45rem; font-size:.9rem; color:#CBD5E1; padding-top:1.15rem; border-top:1px solid var(--border-glass); }
+    .tl-chk    { display:flex; align-items:center; gap:.6rem; }
+    .tl-bullet { color:var(--emerald); font-size:.95rem; }
+
+    /* =====================================================================
+       CONTACT
+       ===================================================================== */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-lead { font-size: 1.15rem; color: var(--text-bright); line-height: 1.65; font-weight: 500; }
+
+    .ch-cards { display: flex; flex-direction: column; gap: 1.1rem; }
+    .ch-card  { padding: 1.35rem 1.6rem; border-radius: 14px; background: var(--bg-card); border: 1px solid var(--border-glass); display: flex; align-items: center; gap: 1.35rem; transition: var(--tr); }
+    .ch-card:hover { border-color: var(--emerald); transform: translateX(4px); box-shadow: 0 12px 28px rgba(0,0,0,.45); }
+    .ch-icon { width:46px; height:46px; border-radius:12px; background:rgba(255,255,255,.04); border:1px solid var(--border-glass); display:flex; align-items:center; justify-content:center; color:var(--emerald); flex-shrink:0; }
+    .ch-det  { flex-grow:1; overflow:hidden; }
+    .ch-label{ font-size:.78rem; color:var(--text-dim); font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.05em; }
+    .ch-val  { font-size:.96rem; color:var(--text-bright); font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; }
+    .ch-note { font-size:.74rem; color:var(--amber); font-style:italic; }
+
+    .form-card { padding: 2.65rem; }
+    .form-card h3 { font-size: 1.45rem; margin-bottom: .5rem; }
+    .form-card .form-sub { font-size: .92rem; color: var(--text-muted); margin-bottom: 2rem; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-label { display:block; font-size:.85rem; font-family:var(--font-mono); color:var(--text-muted); margin-bottom:.5rem; }
+    .form-input, .form-ta {
+      width:100%; padding:.9rem 1.1rem; border-radius:10px;
+      background:rgba(6,8,13,.85); border:1px solid var(--border-glass);
+      color:var(--text-bright); font-family:var(--font-body); font-size:.95rem;
+      transition:var(--tr); outline:none;
+    }
+    .form-input:focus, .form-ta:focus { border-color:var(--emerald); box-shadow:0 0 18px var(--emerald-glow); background:rgba(12,18,28,.95); }
+    .form-ta { min-height:125px; resize:vertical; }
+
+    /* =====================================================================
+       FOOTER
+       ===================================================================== */
+    .site-footer { border-top:1px solid var(--border-glass); padding:4.5rem 0 2.5rem; background:rgba(4,6,10,.98); position:relative; z-index:10; }
+    .footer-top  { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem; margin-bottom:3rem; padding-bottom:2.5rem; border-bottom:1px solid rgba(255,255,255,.05); }
+    .footer-brand{ max-width:440px; }
+    .footer-tag  { font-size:1rem; color:var(--text-muted); margin-top:.85rem; font-style:italic; }
+    .footer-nav  { display:flex; flex-wrap:wrap; gap:1.6rem; list-style:none; }
+    .footer-link { font-size:.92rem; color:var(--text-muted); }
+    .footer-link:hover { color:var(--emerald); }
+    .footer-bot  { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; font-size:.86rem; color:var(--text-dim); }
+    .btt {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.55rem 1.15rem; border-radius:9999px;
+      background:rgba(255,255,255,.04); border:1px solid var(--border-glass);
+      color:var(--text-muted); font-size:.82rem; font-family:var(--font-mono); transition:var(--tr);
+    }
+    .btt:hover { background:rgba(52,211,153,.1); border-color:var(--emerald); color:var(--emerald); transform:translateY(-2px); }
+
+    /* =====================================================================
+       KEYFRAME ANIMATIONS
+       ===================================================================== */
+    @keyframes slideDown { from{ opacity:0; transform:translateY(-22px); } to{ opacity:1; transform:translateY(0); } }
+    @keyframes slideUp   { from{ opacity:0; transform:translateY(26px); }  to{ opacity:1; transform:translateY(0); } }
+    @keyframes slideLeft { from{ opacity:0; transform:translateX(32px); }  to{ opacity:1; transform:translateX(0); } }
+
+    /* =====================================================================
+       RESPONSIVE
+       ===================================================================== */
+    @media (max-width:992px) {
+      .hero-grid     { grid-template-columns:1fr; gap:3rem; text-align:center; }
+      .status-badge  { margin:0 auto 1.6rem; }
+      .typing-row    { justify-content:center; }
+      .hero-intro    { margin:0 auto 2.25rem; }
+      .hero-btns     { justify-content:center; }
+      .about-grid    { grid-template-columns:1fr; }
+      .pillars       { grid-template-columns:1fr; }
+      .hometown-grid { grid-template-columns:1fr; }
+      .hobbies       { grid-template-columns:1fr; }
+      .skills-grid   { grid-template-columns:1fr; }
+      .proj-grid     { grid-template-columns:1fr; }
+      .contact-grid  { grid-template-columns:1fr; }
+    }
+
+    @media (max-width:868px) {
+      .nav-ham { display:flex; }
+      .nav-list {
+        position:fixed; top:0; right:-100%; width:82%; max-width:320px; height:100vh;
+        background:rgba(6,8,13,.98); backdrop-filter:blur(25px);
+        border-left:1px solid var(--border-glass);
+        flex-direction:column; align-items:stretch;
+        padding:2rem; gap:1.25rem;
+        transition:right .35s var(--ease-out); z-index:1005;
+        box-shadow:-15px 0 40px rgba(0,0,0,.7);
+      }
+      .mobile-drawer-hdr {
+        display:flex; align-items:center; justify-content:space-between;
+        padding-bottom:1.25rem; margin-bottom:.5rem; border-bottom:1px solid var(--border-glass);
+      }
+      .mobile-drawer-hdr span { font-family:var(--font-heading); font-size:1.1rem; }
+      .close-btn {
+        width:36px; height:36px; border-radius:8px;
+        background:rgba(255,255,255,.05); border:1px solid var(--border-glass);
+        display:flex; align-items:center; justify-content:center;
+        font-size:1.4rem; color:var(--text-muted); cursor:pointer; line-height:1;
+      }
+      .close-btn:hover { color:var(--magenta); border-color:var(--magenta); }
+
+      .nav-toggle:checked ~ .nav-list { right:0; }
+      .nav-toggle:checked ~ .nav-ham .line-top { transform:translateY(7px) rotate(45deg); }
+      .nav-toggle:checked ~ .nav-ham .line-mid { opacity:0; }
+      .nav-toggle:checked ~ .nav-ham .line-bot { transform:translateY(-7px) rotate(-45deg); }
+      .nav-toggle:checked ~ .nav-backdrop { display:block; position:fixed; inset:0; background:rgba(0,0,0,.7); backdrop-filter:blur(4px); z-index:1004; }
+
+      .nav-link { font-size:1.1rem; padding:.65rem 0; border-bottom:1px solid rgba(255,255,255,.05); }
+      .nav-list .btn { margin-top:1rem; width:100%; }
+
+      .timeline::before { left:20px; }
+      .tl-node { left:8px; }
+      .tl-item { padding-left:52px; }
+      .beyond, .hometown-section { padding:2.25rem 1.35rem; }
+    }
+
+    @media (max-width:480px) {
+      .hero-btns .btn { width:100%; }
+      .story-card, .form-card, .tl-card { padding:1.6rem 1.25rem; }
+      .pledge { flex-direction:column; text-align:center; gap:1rem; }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      *, *::before, *::after {
+        animation-duration:.01ms!important; animation-iteration-count:1!important;
+        transition-duration:.01ms!important; scroll-behavior:auto!important;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- ═══════════════════════ NAVIGATION ═══════════════════════ -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#top" class="logo-link" aria-label="Home">
+        <div class="logo-badge">MA</div>
+        <div><span class="logo-text">Mouli Arora</span><span class="logo-sub">CS &amp; AI • Roorkee</span></div>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+      <label for="nav-toggle" class="nav-ham" aria-label="Menu">
+        <span class="ham-line line-top"></span>
+        <span class="ham-line line-mid"></span>
+        <span class="ham-line line-bot"></span>
+      </label>
+
+      <ul class="nav-list">
+        <li class="mobile-drawer-hdr"><span>Navigation</span><label for="nav-toggle" class="close-btn" aria-label="Close">&times;</label></li>
+        <li><a href="#top" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#journey" class="nav-link">Journey</a></li>
+        <li><a href="#contact" class="btn btn-primary nav-cta">Let's Connect</a></li>
+      </ul>
+      <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
+    </div>
+  </header>
+
+  <main>
+    <!-- ═══════════════════════ HERO ═══════════════════════ -->
+    <section class="hero" id="hero">
+      <div class="aurora" aria-hidden="true">
+        <div class="aurora-layer aurora-1"></div>
+        <div class="aurora-layer aurora-2"></div>
+        <div class="aurora-layer aurora-3"></div>
+        <div class="aurora-beam"></div>
+      </div>
+
+      <div class="container hero-grid">
+        <div>
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>First-Year CS &amp; AI Student | Learning. Building. Growing.</span>
+          </div>
+
+          <h1 class="hero-h1">
+            Curious Mind.<br>
+            <span class="accent-text">Creative Soul.</span><br>
+            Future AI Innovator.
+          </h1>
+
+          <div class="typing-row">
+            <span>Exploring as a</span>
+            <div class="carousel">
+              <div class="carousel-track">
+                <span class="carousel-word">Aspiring Developer</span>
+                <span class="carousel-word">AI Explorer</span>
+                <span class="carousel-word">Creative Problem Solver</span>
+                <span class="carousel-word">Aspiring Developer</span>
+              </div>
+            </div>
+            <span class="cursor-blink">|</span>
+          </div>
+
+          <p class="hero-intro">
+            Hey, I'm <strong>Mouli Arora</strong> — a Computer Science and AI student from the historic city of Roorkee, on a mission to turn curiosity into code and ideas into reality. I'm building my foundation in Python, computer systems, mathematics, and artificial intelligence while exploring how AI tools can solve real-world problems. Beyond technology, I love cooking, painting, and sketching — creative pursuits that inspire me to think differently. This is where my journey begins, and I'm just getting started.
+          </p>
+
+          <div class="hero-btns">
+            <a href="#journey" class="btn btn-primary">
+              Explore My Journey
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="#projects" class="btn btn-secondary">
+              View My Projects
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 6 4-6 4Z"/></svg>
+            </a>
+          </div>
+
+          <div class="scroll-cue">
+            <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+            <span>Scroll Down</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="code-frame">
+            <div class="code-bar">
+              <div class="dots"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span></div>
+              <div class="code-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                mouli_arora.py
+              </div>
+              <div style="width:40px"></div>
+            </div>
+            <div class="code-body">
+              <p><span class="c-cmt"># First-Year BTech CS &amp; AI Portfolio</span></p>
+              <p><span class="c-kw">class</span> <span class="c-fn">MouliArora</span>:</p>
+              <p style="padding-left:1.25rem"><span class="c-kw">def</span> <span class="c-fn">__init__</span>(<span class="c-pr">self</span>):</p>
+              <p style="padding-left:2.5rem"><span class="c-pr">self</span>.hometown = <span class="c-str">"Roorkee, Uttarakhand"</span></p>
+              <p style="padding-left:2.5rem"><span class="c-pr">self</span>.university = <span class="c-str">"NST X RU"</span></p>
+              <p style="padding-left:2.5rem"><span class="c-pr">self</span>.learning = [</p>
+              <p style="padding-left:3.75rem"><span class="c-str">"Python Basics"</span>,</p>
+              <p style="padding-left:3.75rem"><span class="c-str">"Intro to OS"</span>,</p>
+              <p style="padding-left:3.75rem"><span class="c-str">"AI Tools &amp; Concepts"</span>,</p>
+              <p style="padding-left:3.75rem"><span class="c-str">"Maths for CS"</span></p>
+              <p style="padding-left:2.5rem">]</p>
+              <p style="padding-left:2.5rem"><span class="c-pr">self</span>.hobbies = [<span class="c-str">"Cooking"</span>, <span class="c-str">"Painting"</span>, <span class="c-str">"Sketching"</span>]</p>
+              <br>
+              <p style="padding-left:1.25rem"><span class="c-kw">def</span> <span class="c-fn">motto</span>(<span class="c-pr">self</span>):</p>
+              <p style="padding-left:2.5rem"><span class="c-kw">return</span> <span class="c-str">"Curiosity + Code + Creativity"</span></p>
+            </div>
+            <div class="code-footer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              Status: Learning the fundamentals one step at a time
+            </div>
+            <div class="chip chip-t">🧠 Python + AI Basics</div>
+            <div class="chip chip-b">🏔️ From Roorkee to the World</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ ABOUT ═══════════════════════ -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">01 // Origin Story</span>
+          <h2 class="section-title">Where Ambition Meets Curiosity</h2>
+          <p class="section-desc">A first-year student from Roorkee, stepping into the exciting world of computer science and artificial intelligence.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="glass story-card">
+            <p class="story-lead">
+              Growing up in <span>Roorkee</span> — a city steeped in engineering heritage — naturally sparked my curiosity about technology and how things work.
+            </p>
+            <p class="story-body">
+              Now pursuing my BTech in Computer Science and AI at NST X RU, I'm channelling that early curiosity into learning the fundamentals of programming, understanding how computers work at a deeper level, and exploring the rapidly evolving world of artificial intelligence tools.
+            </p>
+            <p class="story-body">
+              I'm at the very beginning of my journey. I don't have years of experience or a list of shipped products yet — but I have genuine enthusiasm, a daily commitment to learning, and the creative perspective that comes from my love of art and cooking.
+            </p>
+            <div class="story-meta">
+              <span class="meta-tag">📍 Roorkee, Uttarakhand</span>
+              <span class="meta-tag">🎓 BTech CS &amp; AI (Class of 2028)</span>
+              <span class="meta-tag">🌱 First-Year Student</span>
+            </div>
+          </div>
+
+          <div class="pillars">
+            <div class="glass pillar"><div class="pillar-icon pi-1">🔍</div><h3>Curiosity</h3><p>Always asking "how does this work?" — from Python loops to how an operating system manages memory.</p></div>
+            <div class="glass pillar"><div class="pillar-icon pi-2">⚡</div><h3>Consistency</h3><p>Showing up daily to practice coding, solve problems, and learn something new — even when it's difficult.</p></div>
+            <div class="glass pillar"><div class="pillar-icon pi-3">🎨</div><h3>Creativity</h3><p>Bringing an artistic eye to everything I do — from sketching on paper to thinking about how software should feel.</p></div>
+            <div class="glass pillar"><div class="pillar-icon pi-4">🧩</div><h3>Problem Solving</h3><p>Breaking down confusing problems into smaller steps I can tackle one at a time.</p></div>
+          </div>
+        </div>
+
+        <!-- ── My Hometown: Roorkee ── -->
+        <div class="hometown-section">
+          <div class="hometown-header">
+            <span class="section-tag" style="color:var(--amber);border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.08);">Roots &amp; Identity</span>
+            <h3 class="hometown-title">My Hometown: Roorkee</h3>
+            <p class="hometown-sub">A small city in Uttarakhand with a legendary engineering legacy — the place that shaped my curiosity and ambition.</p>
+          </div>
+
+          <div class="hometown-grid">
+            <div class="glass hometown-story-card">
+              <h4>Where Engineering History Lives</h4>
+              <p>
+                Roorkee is a historic city nestled in the Haridwar district of Uttarakhand, at the foothills of the Himalayas. It is best known as the home of <strong style="color:var(--amber)">IIT Roorkee</strong> — one of India's oldest and most prestigious engineering institutions, established in 1847 as the Thomason College of Civil Engineering.
+              </p>
+              <p>
+                Growing up surrounded by this rich academic heritage, I was naturally drawn to technology and engineering. The culture of Roorkee instilled in me a deep respect for knowledge, hard work, and the idea that great engineers can come from small cities.
+              </p>
+              <p>
+                Roorkee is also famous for the Upper Ganges Canal, a marvel of 19th-century civil engineering, and its proximity to the spiritual city of Haridwar and the scenic beauty of Uttarakhand's mountains.
+              </p>
+              <ul class="hometown-highlights">
+                <li><span class="hl-bullet">🏔️</span>Located at the foothills of the Shivalik Himalayas</li>
+                <li><span class="hl-bullet">🎓</span>Home to IIT Roorkee (est. 1847) — Asia's oldest technical institution</li>
+                <li><span class="hl-bullet">🌊</span>Famous for the historic Upper Ganges Canal system</li>
+                <li><span class="hl-bullet">🛕</span>Just 30 km from the sacred city of Haridwar</li>
+                <li><span class="hl-bullet">💚</span>A city that values education, discipline, and ambition</li>
+              </ul>
+            </div>
+
+            <div class="hometown-facts">
+              <div class="fact-card">
+                <span class="fact-emoji">🏛️</span>
+                <div class="fact-label">Heritage</div>
+                <h4 class="fact-title">Engineering Capital</h4>
+                <p class="fact-desc">Roorkee's engineering legacy dates back nearly 180 years. Growing up here, you hear stories of civil engineers who built India's canal networks and infrastructure.</p>
+              </div>
+              <div class="fact-card">
+                <span class="fact-emoji">🏔️</span>
+                <div class="fact-label">Nature</div>
+                <h4 class="fact-title">Gateway to the Hills</h4>
+                <p class="fact-desc">Surrounded by the scenic Shivalik range, Rajaji National Park, and the Ganges river system — a perfect balance of urban life and natural beauty.</p>
+              </div>
+              <div class="fact-card">
+                <span class="fact-emoji">🌱</span>
+                <div class="fact-label">Personal Impact</div>
+                <h4 class="fact-title">Where My Story Began</h4>
+                <p class="fact-desc">Roorkee taught me that world-class ambitions can start anywhere. From this small city, I'm building the skills to make an impact at the global stage.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Beyond the Screen ── -->
+        <div class="beyond">
+          <div class="beyond-header">
+            <span class="section-tag" style="color:var(--magenta);border-color:rgba(232,121,249,.35);background:rgba(232,121,249,.08);">Personal Balance</span>
+            <h3 class="beyond-title">Beyond the Screen</h3>
+            <p class="beyond-sub">When I step away from code, my creative passions keep my mind sharp, inventive, and grounded.</p>
+          </div>
+          <div class="hobbies">
+            <div class="hobby-card">
+              <span class="hobby-emoji">🍳</span>
+              <div class="hobby-tag">Algorithmic Chemistry</div>
+              <h4 class="hobby-name">Cooking</h4>
+              <p class="hobby-desc">Cooking is like running a delicious algorithm: precise proportions, timing, iterative adjustments, and room for improvisation. It teaches me patience and experimentation.</p>
+            </div>
+            <div class="hobby-card">
+              <span class="hobby-emoji">🎨</span>
+              <div class="hobby-tag">Color &amp; Perspective</div>
+              <h4 class="hobby-name">Painting</h4>
+              <p class="hobby-desc">Splashing colors onto canvas lets me think in terms of balance, emotion, and aesthetic flow — visual harmony that directly informs how I think about design.</p>
+            </div>
+            <div class="hobby-card">
+              <span class="hobby-emoji">✏️</span>
+              <div class="hobby-tag">Structural Observation</div>
+              <h4 class="hobby-name">Sketching</h4>
+              <p class="hobby-desc">Sketching trains my eyes to notice proportions, light, and structure. This attention to detail is invaluable when debugging code or wireframing ideas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ SKILLS ═══════════════════════ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">02 // Knowledge Stack</span>
+          <h2 class="section-title">What I'm Currently Learning</h2>
+          <p class="section-desc">An honest look at where I stand in my first year — no inflated claims, just real progress and genuine curiosity.</p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Python Basics -->
+          <div class="glass skill-card">
+            <div class="skill-top">
+              <div><h3 class="skill-cat">Programming</h3><span class="skill-sub">Python Basics</span></div>
+              <span class="stag stag-learn">Currently Learning</span>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item"><span class="sk-dot sk-d1"></span><div><strong>Variables &amp; Data Types:</strong> Strings, integers, floats, booleans, and type conversion.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d1"></span><div><strong>Control Flow:</strong> If/else statements, for loops, while loops, and basic logic.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d1"></span><div><strong>Functions:</strong> Defining functions, parameters, return values, and simple reuse.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d1"></span><div><strong>Lists &amp; Dictionaries:</strong> Storing, accessing, and iterating over collections of data.</div></li>
+            </ul>
+            <div class="skill-footer">Current focus: Writing small programs to practise logic — calculators, quizzes, number guessing games.</div>
+          </div>
+
+          <!-- Computer Systems -->
+          <div class="glass skill-card">
+            <div class="skill-top">
+              <div><h3 class="skill-cat">Computer Science</h3><span class="skill-sub">Systems Awareness</span></div>
+              <span class="stag stag-begin">Getting Started</span>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item"><span class="sk-dot sk-d2"></span><div><strong>What an OS Does:</strong> Learning how operating systems manage hardware, files, and programs.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d2"></span><div><strong>Basic Computer Architecture:</strong> Understanding CPU, RAM, storage, and how they work together.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d2"></span><div><strong>File Systems &amp; Directories:</strong> How files are organized and accessed by the operating system.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d2"></span><div><strong>Terminal &amp; Commands:</strong> Getting familiar with basic command-line navigation and Git.</div></li>
+            </ul>
+            <div class="skill-footer">Current focus: Understanding the big picture of how software runs on hardware.</div>
+          </div>
+
+          <!-- AI Essentials -->
+          <div class="glass skill-card">
+            <div class="skill-top">
+              <div><h3 class="skill-cat">Artificial Intelligence</h3><span class="skill-sub">AI Awareness &amp; Tools</span></div>
+              <span class="stag stag-explore">Exploring</span>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item"><span class="sk-dot sk-d3"></span><div><strong>What is AI?</strong> Understanding the difference between AI, machine learning, and traditional programming.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d3"></span><div><strong>Using AI Tools:</strong> Experimenting with ChatGPT, Gemini, and similar tools for learning and productivity.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d3"></span><div><strong>Prompt Engineering:</strong> Learning how to ask better questions to get useful AI-generated responses.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d3"></span><div><strong>AI Ethics Basics:</strong> Thinking about bias, misinformation, and responsible use of AI tools.</div></li>
+            </ul>
+            <div class="skill-footer">Current focus: Using AI tools effectively as a learning companion, not a replacement for understanding.</div>
+          </div>
+
+          <!-- Mathematics -->
+          <div class="glass skill-card">
+            <div class="skill-top">
+              <div><h3 class="skill-cat">Mathematics</h3><span class="skill-sub">Foundations for CS</span></div>
+              <span class="stag stag-learn">Currently Learning</span>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item"><span class="sk-dot sk-d4"></span><div><strong>Basic Calculus:</strong> Understanding derivatives, integrals, and how they relate to rates of change.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d4"></span><div><strong>Algebra &amp; Functions:</strong> Equations, functions, graphs, and foundational algebraic manipulation.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d4"></span><div><strong>Logic &amp; Sets:</strong> Introductory propositional logic, truth tables, and set operations.</div></li>
+              <li class="skill-item"><span class="sk-dot sk-d4"></span><div><strong>Basic Probability:</strong> Simple probability, permutations, and combinations at an introductory level.</div></li>
+            </ul>
+            <div class="skill-footer">Current focus: Building mathematical intuition that will support future CS and AI courses.</div>
+          </div>
+        </div>
+
+        <div class="pledge">
+          <div class="pledge-icon">💡</div>
+          <div>
+            <h4>Honest Learning Pledge</h4>
+            <p>I'm a first-year student at the very start of my journey. I don't claim expertise — I claim curiosity, consistency, and a willingness to learn. Every skill listed here is something I'm actively studying, not something I've mastered.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ PROJECTS ═══════════════════════ -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">03 // Workbench</span>
+          <h2 class="section-title">Starter Projects &amp; Ideas</h2>
+          <p class="section-desc">Projects I'm planning to build as I learn. Clearly marked as planned — no fake repos or invented results.</p>
+        </div>
+
+        <div class="proj-grid">
+          <article class="glass proj-card">
+            <div>
+              <div class="proj-badges"><span class="proj-type">Core Python</span><span class="proj-status">Planned</span></div>
+              <h3 class="proj-title">Python Mini Projects</h3>
+              <p class="proj-desc">Small programs to practise fundamentals: a number guessing game, a simple calculator, a to-do list manager, and a basic quiz app — all built in Python.</p>
+              <div class="proj-tags"><span class="tech-pill">Python 3</span><span class="tech-pill">Basics</span><span class="tech-pill">CLI</span></div>
+            </div>
+            <div class="proj-actions">
+              <span class="proj-btn proj-btn-off">Repo (Planned)</span>
+              <a href="#journey" class="proj-btn">View Blueprint →</a>
+            </div>
+          </article>
+
+          <article class="glass proj-card">
+            <div>
+              <div class="proj-badges"><span class="proj-type">AI Exploration</span><span class="proj-status">Planned</span></div>
+              <h3 class="proj-title">AI Tool Experiments</h3>
+              <p class="proj-desc">Documenting experiments with AI tools — comparing outputs, testing prompt strategies, and exploring how AI can help with study notes and coding practice.</p>
+              <div class="proj-tags"><span class="tech-pill">AI Tools</span><span class="tech-pill">Prompt Engineering</span><span class="tech-pill">Documentation</span></div>
+            </div>
+            <div class="proj-actions">
+              <span class="proj-btn proj-btn-off">In Ideation</span>
+              <a href="#journey" class="proj-btn">View Scope →</a>
+            </div>
+          </article>
+
+          <article class="glass proj-card">
+            <div>
+              <div class="proj-badges"><span class="proj-type">Creative Tech</span><span class="proj-status">Planned</span></div>
+              <h3 class="proj-title">Creative Tech Lab</h3>
+              <p class="proj-desc">Future projects combining my love for art with code — generative patterns, digital color tools, or a simple drawing app. Inspired by my painting and sketching hobbies.</p>
+              <div class="proj-tags"><span class="tech-pill">Creative Coding</span><span class="tech-pill">Art &amp; Tech</span><span class="tech-pill">Exploration</span></div>
+            </div>
+            <div class="proj-actions">
+              <span class="proj-btn proj-btn-off">Concept Lab</span>
+              <a href="#about" class="proj-btn">Art Inspiration →</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="proj-note">🛠️ <strong>Easy to Update:</strong> As I complete projects, I'll add real GitHub links and live demos here.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ JOURNEY ═══════════════════════ -->
+    <section class="section" id="journey">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">04 // Roadmap</span>
+          <h2 class="section-title">Small Steps. Big Ambitions.</h2>
+          <p class="section-desc">A transparent roadmap from Roorkee to the world — tracking my growth from first-year student to future tech innovator.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-item tl-now">
+            <div class="tl-node"><div class="tl-node-dot"></div></div>
+            <div class="glass tl-card">
+              <div class="tl-head"><h3 class="tl-title">Year 1: Learning the Basics</h3><span class="tl-badge tb-now">Current (2024–2025)</span></div>
+              <div class="tl-meta">NST X RU • CS &amp; AI</div>
+              <p class="tl-desc">Getting comfortable with Python syntax, understanding what an operating system does, learning foundational maths, and exploring what AI tools can do. Building the habit of daily coding practice.</p>
+              <ul class="tl-checks">
+                <li class="tl-chk"><span class="tl-bullet">✓</span>Learning Python basics — variables, loops, functions, lists</li>
+                <li class="tl-chk"><span class="tl-bullet">✓</span>Understanding computer systems and OS fundamentals</li>
+                <li class="tl-chk"><span class="tl-bullet">✓</span>Experimenting with AI tools like ChatGPT and Gemini</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tl-item tl-next">
+            <div class="tl-node"><div class="tl-node-dot"></div></div>
+            <div class="glass tl-card">
+              <div class="tl-head"><h3 class="tl-title">Year 2: Building Real Things</h3><span class="tl-badge tb-next">Goal (2025–2026)</span></div>
+              <div class="tl-meta">Upcoming • Project Development</div>
+              <p class="tl-desc">Moving beyond basics into data structures, algorithms, and building complete projects. Starting with web development, contributing to open source, and participating in hackathons.</p>
+              <ul class="tl-checks">
+                <li class="tl-chk"><span class="tl-bullet">○</span>Goal: Solve coding challenges on LeetCode/HackerRank</li>
+                <li class="tl-chk"><span class="tl-bullet">○</span>Goal: Build and deploy my first complete web project</li>
+                <li class="tl-chk"><span class="tl-bullet">○</span>Goal: Participate in my first hackathon</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tl-item tl-next">
+            <div class="tl-node"><div class="tl-node-dot"></div></div>
+            <div class="glass tl-card">
+              <div class="tl-head"><h3 class="tl-title">Year 3: Specialising in AI</h3><span class="tl-badge tb-next">Goal (2026–2027)</span></div>
+              <div class="tl-meta">Specialization • AI Focus</div>
+              <p class="tl-desc">Diving deep into machine learning, building AI-powered applications, applying for internships, and starting to write about my technical learnings.</p>
+              <ul class="tl-checks">
+                <li class="tl-chk"><span class="tl-bullet">○</span>Goal: Build projects using machine learning models</li>
+                <li class="tl-chk"><span class="tl-bullet">○</span>Goal: Secure a software engineering internship</li>
+                <li class="tl-chk"><span class="tl-bullet">○</span>Goal: Publish technical blog posts and open-source tools</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tl-item tl-dream">
+            <div class="tl-node"><div class="tl-node-dot"></div></div>
+            <div class="glass tl-card">
+              <div class="tl-head"><h3 class="tl-title">The North Star: World-Class Engineer</h3><span class="tl-badge tb-dream">Dream • Google &amp; Beyond</span></div>
+              <div class="tl-meta">Long-Term Vision • Global Impact</div>
+              <p class="tl-desc">Becoming a skilled software engineer and AI innovator at a world-class technology company like Google. Building meaningful products that merge creativity with intelligence — from Roorkee to the world.</p>
+              <ul class="tl-checks">
+                <li class="tl-chk"><span class="tl-bullet">★</span>Vision: Build technology that impacts millions of people</li>
+                <li class="tl-chk"><span class="tl-bullet">★</span>Vision: Work at Google or a top-tier technology company</li>
+                <li class="tl-chk"><span class="tl-bullet">★</span>Vision: Inspire the next generation of students from small cities</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">05 // Connection</span>
+          <h2 class="section-title">Let's Connect &amp; Collaborate</h2>
+          <p class="section-desc">Have an idea, want to collaborate, or just love talking about technology? I'd love to connect.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <p class="contact-lead">Whether you're a fellow student, a mentor, or someone who shares a passion for technology and creativity — feel free to reach out.</p>
+            <div class="ch-cards">
+              <a href="mailto:mouli.arora@example.com" class="ch-card">
+                <div class="ch-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+                <div class="ch-det"><span class="ch-label">Email</span><span class="ch-val">mouli.arora@example.com</span><span class="ch-note">(Replace with your real email)</span></div>
+              </a>
+              <a href="https://linkedin.com/in/mouli-arora" target="_blank" rel="noopener" class="ch-card">
+                <div class="ch-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></div>
+                <div class="ch-det"><span class="ch-label">LinkedIn</span><span class="ch-val">linkedin.com/in/mouli-arora</span><span class="ch-note">(Add your LinkedIn profile URL)</span></div>
+              </a>
+              <a href="https://github.com/mouli-arora" target="_blank" rel="noopener" class="ch-card">
+                <div class="ch-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg></div>
+                <div class="ch-det"><span class="ch-label">GitHub</span><span class="ch-val">github.com/mouli-arora</span><span class="ch-note">(Add your GitHub username)</span></div>
+              </a>
+              <div class="ch-card">
+                <div class="ch-icon" style="color:var(--amber)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                <div class="ch-det"><span class="ch-label">Location</span><span class="ch-val">Roorkee, Uttarakhand • NST X RU</span><span class="ch-note">Open for remote chats &amp; collaborations</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass form-card">
+            <h3>Send a Message</h3>
+            <p class="form-sub">Drop a quick note and I'll get back to you as soon as possible.</p>
+            <form action="mailto:mouli.arora@example.com" method="post" enctype="text/plain">
+              <div class="form-group"><label for="name" class="form-label">Your Name</label><input type="text" id="name" name="name" class="form-input" placeholder="e.g. Alex Johnson" required></div>
+              <div class="form-group"><label for="email" class="form-label">Your Email</label><input type="email" id="email" name="email" class="form-input" placeholder="e.g. alex@example.com" required></div>
+              <div class="form-group"><label for="subject" class="form-label">Subject</label><input type="text" id="subject" name="subject" class="form-input" placeholder="Collaboration, mentorship, or tech chat" required></div>
+              <div class="form-group"><label for="message" class="form-label">Message</label><textarea id="message" name="message" class="form-ta" placeholder="Hello Mouli, I saw your portfolio and..." required></textarea></div>
+              <button type="submit" class="btn btn-primary" style="width:100%">
+                Send Message
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-link"><div class="logo-badge">MA</div><div><span class="logo-text">Mouli Arora</span><span class="logo-sub">NST X RU • Roorkee</span></div></div>
+          <p class="footer-tag">"Built with curiosity, creativity, and a little bit of code."</p>
+        </div>
+        <ul class="footer-nav">
+          <li><a href="#top" class="footer-link">Home</a></li>
+          <li><a href="#about" class="footer-link">About</a></li>
+          <li><a href="#skills" class="footer-link">Skills</a></li>
+          <li><a href="#projects" class="footer-link">Projects</a></li>
+          <li><a href="#journey" class="footer-link">Journey</a></li>
+          <li><a href="#contact" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-bot">
+        <p>&copy; 2024 Mouli Arora. All rights reserved.</p>
+        <a href="#top" class="btt">
+          Back to Top
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
